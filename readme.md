@@ -7,7 +7,7 @@
 
 ##Installation and other stuff:
 
-Check out the wireframes and user stories on Trello!
+Check out the wireframes and user stories on [Trello!](https://trello.com/b/IIlDyBxH/portfolio)
 <br>
 or
 <br>
