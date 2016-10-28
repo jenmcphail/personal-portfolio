@@ -3,18 +3,8 @@ import ReactDOM, { render } from 'react-dom';
 import {Router, Route, Link, IndexRoute, useRouterHistory } from 'react-router'
 import { createHashHistory } from 'history'
 const appHistory = useRouterHistory(createHashHistory)({ queryKey: false })
-
-class Portfolio extends Component {
-    render(){
-        return (<h1>Home Page / Portfolio</h1>);
-    }
-}
-
-class About extends Component {
-    render(){
-        return (<h1>About Page</h1>);
-    }
-}
+import Portfolio from './Components/Portfolio.jsx'
+import About from './Components/About.jsx'
 
 ReactDOM.render(
   <Router history={appHistory}>
