@@ -73,33 +73,57 @@
 	
 	var appHistory = (0, _reactRouter.useRouterHistory)(_history.createHashHistory)({ queryKey: false });
 	
-	var App = function (_Component) {
-	  _inherits(App, _Component);
+	var Portfolio = function (_Component) {
+	    _inherits(Portfolio, _Component);
 	
-	  function App() {
-	    _classCallCheck(this, App);
+	    function Portfolio() {
+	        _classCallCheck(this, Portfolio);
 	
-	    return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
-	  }
-	
-	  _createClass(App, [{
-	    key: 'render',
-	    value: function render() {
-	      return _react2.default.createElement(
-	        'h1',
-	        null,
-	        'Hi'
-	      );
+	        return _possibleConstructorReturn(this, (Portfolio.__proto__ || Object.getPrototypeOf(Portfolio)).apply(this, arguments));
 	    }
-	  }]);
 	
-	  return App;
+	    _createClass(Portfolio, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'h1',
+	                null,
+	                'Home Page / Portfolio'
+	            );
+	        }
+	    }]);
+	
+	    return Portfolio;
+	}(_react.Component);
+	
+	var About = function (_Component2) {
+	    _inherits(About, _Component2);
+	
+	    function About() {
+	        _classCallCheck(this, About);
+	
+	        return _possibleConstructorReturn(this, (About.__proto__ || Object.getPrototypeOf(About)).apply(this, arguments));
+	    }
+	
+	    _createClass(About, [{
+	        key: 'render',
+	        value: function render() {
+	            return _react2.default.createElement(
+	                'h1',
+	                null,
+	                'About Page'
+	            );
+	        }
+	    }]);
+	
+	    return About;
 	}(_react.Component);
 	
 	_reactDom2.default.render(_react2.default.createElement(
-	  _reactRouter.Router,
-	  { history: appHistory },
-	  _react2.default.createElement(_reactRouter.Route, { path: '/', component: App })
+	    _reactRouter.Router,
+	    { history: appHistory },
+	    _react2.default.createElement(_reactRouter.Route, { path: '/', component: Portfolio }),
+	    _react2.default.createElement(_reactRouter.Route, { path: '/about', component: About })
 	), document.getElementById('app'));
 
 /***/ },
