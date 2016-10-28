@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
+import ReactDOM, { render } from 'react-dom';
+import {Router, Route, Link, IndexRoute, useRouterHistory } from 'react-router'
+import { createHashHistory } from 'history'
+const appHistory = useRouterHistory(createHashHistory)({ queryKey: false })
 
 class App extends Component {
     render(){
@@ -7,4 +10,9 @@ class App extends Component {
     }
 }
 
-render(<App />, document.getElementById('app'));
+ReactDOM.render(
+  <Router history={appHistory}>
+    <Route path="/" component={App} />
+  </Router>,
+  document.getElementById('app')
+);
