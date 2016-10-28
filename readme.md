@@ -15,4 +15,4 @@ See the site live here!
 <br>
 or
 <br>
-Clone this repo in your CLI, npm install, navigate to the main.js folder and npm start to spin up your own server and launch the app locally.
+Clone this repo, 'npm install', and 'npm run serve' in your CLI to spin up your own server and launch the app locally.
