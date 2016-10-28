@@ -4,8 +4,10 @@
   "description": "Professional portfolio built with react",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+   "watch" : "webpack -d --watch",
+   "build" : "webpack",
+   "serve" : "serve ./public"
+ },
   "author": "Jen McPhail",
   "license": "ISC",
   "dependencies": {
