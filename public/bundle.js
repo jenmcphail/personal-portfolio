@@ -59,8 +59,6 @@
 	
 	var _reactRouter = __webpack_require__(/*! react-router */ 172);
 	
-	var _history = __webpack_require__(/*! history */ 227);
-	
 	var _Portfolio = __webpack_require__(/*! ./Components/Portfolio.jsx */ 229);
 	
 	var _Portfolio2 = _interopRequireDefault(_Portfolio);
@@ -76,14 +74,9 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	/* imports react and framework dependencies */
-	var appHistory = (0, _reactRouter.useRouterHistory)(_history.createHashHistory)({ queryKey: false });
-	
-	/* Imports components */
-	
-	
 	_reactDom2.default.render(_react2.default.createElement(
 	  _reactRouter.Router,
-	  { history: appHistory },
+	  { history: _reactRouter.browserHistory },
 	  _react2.default.createElement(
 	    _reactRouter.Route,
 	    { path: '/', component: _Main2.default },
@@ -91,6 +84,8 @@
 	    _react2.default.createElement(_reactRouter.Route, { path: '/about', component: _About2.default })
 	  )
 	), document.getElementById('app'));
+	
+	/* Imports components */
 
 /***/ },
 /* 1 */
@@ -27043,154 +27038,8 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 1)))
 
 /***/ },
-/* 227 */
-/*!********************************!*\
-  !*** ./~/history/lib/index.js ***!
-  \********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	exports.__esModule = true;
-	exports.locationsAreEqual = exports.Actions = exports.useQueries = exports.useBeforeUnload = exports.useBasename = exports.createMemoryHistory = exports.createHashHistory = exports.createHistory = undefined;
-	
-	var _LocationUtils = __webpack_require__(/*! ./LocationUtils */ 208);
-	
-	Object.defineProperty(exports, 'locationsAreEqual', {
-	  enumerable: true,
-	  get: function get() {
-	    return _LocationUtils.locationsAreEqual;
-	  }
-	});
-	
-	var _createBrowserHistory = __webpack_require__(/*! ./createBrowserHistory */ 217);
-	
-	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
-	
-	var _createHashHistory2 = __webpack_require__(/*! ./createHashHistory */ 225);
-	
-	var _createHashHistory3 = _interopRequireDefault(_createHashHistory2);
-	
-	var _createMemoryHistory2 = __webpack_require__(/*! ./createMemoryHistory */ 211);
-	
-	var _createMemoryHistory3 = _interopRequireDefault(_createMemoryHistory2);
-	
-	var _useBasename2 = __webpack_require__(/*! ./useBasename */ 210);
-	
-	var _useBasename3 = _interopRequireDefault(_useBasename2);
-	
-	var _useBeforeUnload2 = __webpack_require__(/*! ./useBeforeUnload */ 228);
-	
-	var _useBeforeUnload3 = _interopRequireDefault(_useBeforeUnload2);
-	
-	var _useQueries2 = __webpack_require__(/*! ./useQueries */ 204);
-	
-	var _useQueries3 = _interopRequireDefault(_useQueries2);
-	
-	var _Actions2 = __webpack_require__(/*! ./Actions */ 202);
-	
-	var _Actions = _interopRequireWildcard(_Actions2);
-	
-	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	exports.createHistory = _createBrowserHistory2.default;
-	exports.createHashHistory = _createHashHistory3.default;
-	exports.createMemoryHistory = _createMemoryHistory3.default;
-	exports.useBasename = _useBasename3.default;
-	exports.useBeforeUnload = _useBeforeUnload3.default;
-	exports.useQueries = _useQueries3.default;
-	exports.Actions = _Actions;
-
-/***/ },
-/* 228 */
-/*!******************************************!*\
-  !*** ./~/history/lib/useBeforeUnload.js ***!
-  \******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
-	
-	exports.__esModule = true;
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _invariant = __webpack_require__(/*! invariant */ 176);
-	
-	var _invariant2 = _interopRequireDefault(_invariant);
-	
-	var _DOMUtils = __webpack_require__(/*! ./DOMUtils */ 220);
-	
-	var _ExecutionEnvironment = __webpack_require__(/*! ./ExecutionEnvironment */ 218);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var startListener = function startListener(getPromptMessage) {
-	  var handleBeforeUnload = function handleBeforeUnload(event) {
-	    var message = getPromptMessage();
-	
-	    if (typeof message === 'string') {
-	      (event || window.event).returnValue = message;
-	      return message;
-	    }
-	
-	    return undefined;
-	  };
-	
-	  (0, _DOMUtils.addEventListener)(window, 'beforeunload', handleBeforeUnload);
-	
-	  return function () {
-	    return (0, _DOMUtils.removeEventListener)(window, 'beforeunload', handleBeforeUnload);
-	  };
-	};
-	
-	/**
-	 * Returns a new createHistory function that can be used to create
-	 * history objects that know how to use the beforeunload event in web
-	 * browsers to cancel navigation.
-	 */
-	var useBeforeUnload = function useBeforeUnload(createHistory) {
-	  !_ExecutionEnvironment.canUseDOM ? process.env.NODE_ENV !== 'production' ? (0, _invariant2.default)(false, 'useBeforeUnload only works in DOM environments') : (0, _invariant2.default)(false) : void 0;
-	
-	  return function (options) {
-	    var history = createHistory(options);
-	
-	    var listeners = [];
-	    var stopListener = void 0;
-	
-	    var getPromptMessage = function getPromptMessage() {
-	      var message = void 0;
-	      for (var i = 0, len = listeners.length; message == null && i < len; ++i) {
-	        message = listeners[i].call();
-	      }return message;
-	    };
-	
-	    var listenBeforeUnload = function listenBeforeUnload(listener) {
-	      if (listeners.push(listener) === 1) stopListener = startListener(getPromptMessage);
-	
-	      return function () {
-	        listeners = listeners.filter(function (item) {
-	          return item !== listener;
-	        });
-	
-	        if (listeners.length === 0 && stopListener) {
-	          stopListener();
-	          stopListener = null;
-	        }
-	      };
-	    };
-	
-	    return _extends({}, history, {
-	      listenBeforeUnload: listenBeforeUnload
-	    });
-	  };
-	};
-	
-	exports.default = useBeforeUnload;
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./~/process/browser.js */ 1)))
-
-/***/ },
+/* 227 */,
+/* 228 */,
 /* 229 */
 /*!**************************************!*\
   !*** ./src/Components/Portfolio.jsx ***!
