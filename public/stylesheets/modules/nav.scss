@@ -1,5 +1,3 @@
-@import 'stylesheets/config/colors'
+@import '../config/colors.scss'
 
-.nav{
-  color: $red
-}
+.nav {color: $red;}

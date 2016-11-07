@@ -1,6 +1,6 @@
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const path = require('path');
 
 const BUILD_DIR = path.resolve(__dirname, 'public');
@@ -9,7 +9,7 @@ const APP_DIR = path.resolve(__dirname, 'src');
 const sassLoaders = [
   'css-loader',
   'postcss-loader',
-  'sass-loader?indentedSyntax=sass&includePaths[]=' + BUILD_DIR
+  'sass-loader?indentedSyntax=sass&includePaths[]=' + path.resolve(__dirname, './src')
 ]
 
 const config = {
@@ -31,12 +31,8 @@ const config = {
       }
     ]
   },
-  output: {
-    path: __dirname,
-    filename: "bundle.js"
-  },
   plugins: [
-    new ExtractTextPlugin('public/stylesheets/app.css')
+    new ExtractTextPlugin('app.css', { allChunks: true })
   ],
   postcss: [
     autoprefixer({
@@ -44,8 +40,8 @@ const config = {
     })
   ],
   resolve: {
-    extensions: ['', '.jsx', '.js', '.scss'],
-    root: [path.join(__dirname, 'public/stylesheets')]
+    extensions: ['', '.js', '.jsx', '.scss'],
+    root: [path.join(__dirname, './public')]
   }
 };
 

@@ -27160,7 +27160,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \".../public/stylesheets/modules/nav.scss\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	__webpack_require__(/*! stylesheets/modules/nav.scss */ 230);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -27199,6 +27199,15 @@
 	}(_react.Component);
 	
 	exports.default = Main;
+
+/***/ },
+/* 230 */
+/*!*********************************************!*\
+  !*** ./public/stylesheets/modules/nav.scss ***!
+  \*********************************************/
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);
